@@ -41,27 +41,26 @@ SRCS	=	ft_memset.c\
 		ft_strsub.c\
 		ft_strjoin.c\
 		ft_strtrim.c\
-		ft_strsplit.c\
+		ft_split.c\
 		ft_itoa.c\
 		ft_putchar.c\
 		ft_putstr.c\
-		ft_putendel.c\
+		ft_putendl.c\
 		ft_putnbr.c\
-
-OBJS = ${SRCS.c=.o}
-
-HEADER = includes
 
 CC = gcc
 RM = rm -f
 AR = ar rcs
 
-CFLAGS = -Wall -Wextra Werror
+OBJS = ${SRCS:.c=.o}
 
-%.o: %.c
-		${CC} -o ${CFALGS} -c $@ $< ${HEADER}
+CFLAGS = -Wall -Wextra -Werror
+
 ${NAME}:	${OBJS}
 			${AR} ${NAME} ${OBJS}
+
+%.o: %.c
+		${CC} -o $@ -c $? ${CFALGS}
 
 all:	${NAME}
 
@@ -70,6 +69,7 @@ clean:
 
 fclean:	clean
 		${RM} ${NAME}	
+
 re:	fclean all
 
 .PHONY: all clean fclean re
