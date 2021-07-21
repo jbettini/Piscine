@@ -6,5 +6,5 @@ void ft_striter(char *s, void (*f)(char *))
 
     i = 0;
     while(s[i])
-        (*f)(s[i++]);
+        (*f)(&s[i++]);
 }

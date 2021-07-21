@@ -5,7 +5,7 @@ void ft_bzero(void *s, size_t len)
 
     i = 0;
     if (!s)
-        return (NULL);
+        return;
     while(i < len)
         ((unsigned char *)s)[i++] = 0;
 }
