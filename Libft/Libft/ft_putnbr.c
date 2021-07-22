@@ -2,12 +2,7 @@
 
 void ft_putnbr(int n)
 {
-    char nb;
-
-    nb = 0;
-    if (n == -2147483648)
-        write(11, "-2147483648", 11);
-    else
+    if (n != -2147483648)
     {
         if (n < 0)
         {
@@ -15,9 +10,10 @@ void ft_putnbr(int n)
             n *= -1;
         }
         if(n > 9)
-            ft_putnbr(nb / 10);
-        nb = n % 10 + 48;
-		ft_putchar(nb);
+            ft_putnbr(n / 10);
+        n = n % 10 + 48;
+	ft_putchar(n);
     }
-
+    else
+        write(1, "-2147483648", 11);
 }

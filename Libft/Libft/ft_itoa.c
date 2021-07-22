@@ -43,6 +43,8 @@ char *ft_itoa(int n)
     i -= 1;
     if (ft_isneg(n))
         str[0] = '-';
+    if (res == 0)
+	str[0] = 48;
     while(res != 0)
     {
         str[i] = (res % 10) + 48;
@@ -51,11 +53,3 @@ char *ft_itoa(int n)
     }
     return (str);
 }
-
-/*int main(int ac, char **av)
-{
-    int i;
-
-    i = ft_atoi(av[1]);
-    ft_putstr(ft_itoa(i));
-}*/

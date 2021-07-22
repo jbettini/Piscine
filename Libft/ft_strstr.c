@@ -1,24 +1,24 @@
 #include "libft.h"
 
-char *ft_strnstr(const char *str, const char *tofind, size_t n)
+char *ft_strstr(const char *str, const char *tofind)
 {
     size_t i;
     size_t j;
 
     i = 0;
     j = 0;
-    if (tofind[i] == 0)
-	return ((char*)str);
-    while(str[i] && i < n)
+    if (!tofind || !str)
+		return ((char*)str);
+    while(str[i])
     {
+	j = 0;
         if (str[i] == tofind[j])
-            while (str[i + j] == tofind[j] && i + j < n) 
+            while (str[i + j] == tofind[j]) 
             {
-                if (tofind[j + 1] == '\0' )
+                if (tofind[j + 1] == '\0')
                     return ((char*)str + i);
                 j++;
             }
-        j = 0;
         i++;
     }
     return (0);

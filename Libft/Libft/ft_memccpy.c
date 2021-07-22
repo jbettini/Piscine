@@ -2,16 +2,19 @@
 
 void *ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
-    size_t i;
+	size_t i;
+	unsigned char *d;
+	unsigned char *s;
 
-    i = 0;
-    if (c > n)
-        ft_memcpy(dest,src,n);
-    else 
-        while(i < c)
-        {
-            ((unsigned char*)dest)[i] =  ((unsigned char*)src)[i];
-            i++;
-        }
-        return (dest);
+	i = 0;
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
+	while(i < n)
+	{
+		d[i] = s[i];
+		if (s[i] = c)
+			return(dest + i + 1);
+		i++;
+	}
+	return (NULL);
 }

@@ -58,7 +58,7 @@ char **wordalloc(char const *s, char c)
     return (str);
 }
 
-char **ft_strsplit(char const *s, char c)
+char **ft_split(char const *s, char c)
 {
     char **str;
     size_t i;
@@ -82,3 +82,4 @@ char **ft_strsplit(char const *s, char c)
     str[j] = 0;
     return (str);
 }
+
