@@ -2,7 +2,7 @@
 
 int is_blank(char c)
 {
-    if (c == 32 || c >= 9 && c <= 13)
+    if (c == 32 || (c >= 9 && c <= 13))
         return (1);
     else
         return (0);
@@ -22,6 +22,7 @@ int end_blank(char const *s)
     }
     return (i);
 }
+
 char *ft_strtrim(char const *s)
 {
     size_t i;
@@ -37,10 +38,21 @@ char *ft_strtrim(char const *s)
     str = malloc(sizeof(char) * (j - (k + i)) + 1);
     if(!str)
         return (NULL);
-    j = i;
-    k = 0;
-    while(k < (ft_strlen(s) - j) - end_blank(s))
-        str[k++] = s[i++];
-    str[k] = 0;
+    j = 0;
+    while (i < ft_strlen(s) - k)
+    {
+	    str[j] = s[i];
+	    i++;
+	    j++;
+    }
     return (str);
 }
+
+/*#include <stdio.h>
+int main(int ac, char **av)
+{
+	char *str = ft_strtrim(av[1]);
+	if (ac == 1)
+   	printf("str = %s\n", str);
+}
+*/

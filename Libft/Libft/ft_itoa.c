@@ -1,55 +1,63 @@
 #include "libft.h"
 
-int ft_isneg(int n)
+int intlen(long long n)
 {
-    if (n < 0)
+    int i;
+    int neg;
+
+    i = 0;
+    neg = 0;
+    if (n == 0)
         return (1);
-    return (0);
+    else if (n < 0)
+    {
+        neg += 1;
+        n *= -1;
+    }
+    while(n != 0)
+    {
+        i++;
+        n /= 10;
+    }
+    return (i + neg);
 }
 
-int ft_intlen(int n)
+char *makeit(long long n, char *str)
 {
-    int len;
+    int neg;
+    size_t i;
 
-    len = 0;
-    if (ft_isneg(n))
-    {   
-        n = -n;
-        len++;
+    neg = 0;
+    i = intlen(n);
+    str[i] = 0;
+    i -= 1;
+    if (n < 0)
+    {
+        n *= -1;
+        neg += 1;
+        str[0] = '-';
     }
-    if (n == 0)
-        return (1);   
-    else
-        while(n / 10 != 0)
-        {
-            len++;
-            n /= 10;
-        }
-    return (len + 1);
+    else if (n == 0)
+        str[0] = 48;
+
+    while (n != 0 && i >= neg)
+    {
+        str[i] = (n % 10) + 48;
+        n /= 10;
+        i--;
+    }
+    return (str);
 }
 
 char *ft_itoa(int n)
 {
     char *str;
-    size_t i;
-    size_t res;
+    long long res;
 
     res = n;
-    i = ft_intlen(n);
-    str = malloc(sizeof(char) * ft_intlen(n) + 1);
-    if(!str)
+    str = malloc(sizeof(char) * intlen(res) + 1);
+    if (!str)
         return (NULL);
-    str[i] = 0;
-    i -= 1;
-    if (ft_isneg(n))
-        str[0] = '-';
-    if (res == 0)
-	str[0] = 48;
-    while(res != 0)
-    {
-        str[i] = (res % 10) + 48;
-        res /= 10;
-        i--;
-    }
+    str = makeit(res, str);
     return (str);
 }
