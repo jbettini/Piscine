@@ -23,7 +23,7 @@ int end_blank(char const *s)
     return (i);
 }
 
-char *ft_strtrim(char const *s)
+char *ft_strtrim(char const *s, char *charset)
 {
     size_t i;
     size_t j;
@@ -35,16 +35,15 @@ char *ft_strtrim(char const *s)
     k = end_blank(s);
     while(is_blank(s[i]))
         i++;
+    if (i == j)
+	    k = 0;
     str = malloc(sizeof(char) * (j - (k + i)) + 1);
     if(!str)
         return (NULL);
     j = 0;
     while (i < ft_strlen(s) - k)
-    {
-	    str[j] = s[i];
-	    i++;
-	    j++;
-    }
+	    str[j++] = s[i++];
+    str[j] = 0;
     return (str);
 }
 
