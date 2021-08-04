@@ -7,21 +7,12 @@ void ft_lstclear(t_list **alst, void (*del)(void*))
 	li = *alst;
 	if (alst)
 		if(*alst)
-		{
-			while(li->next)
+			while(li)
 			{
-				(*del)(li->content);
-				free(li->content);
-
 				li = li->next;
+				(*del)((*alst)->content);
+				free((void*)*alst);
+				*alst = 0;
+				*alst = li;
 			}
-			free((void*)*alst);
-			*alst = 0;
-		}
-		else
-		{
-			free((void*)*alst);
-			*alst = 0;
-		}
-	
 }

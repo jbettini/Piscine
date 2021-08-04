@@ -58,6 +58,7 @@ SRCS	=	ft_memset.c\
 		ft_lstdelone.c\
 		ft_lstclear.c\
 		ft_lstiter.c\
+		ft_lstmap.c\
 		
 
 CC = gcc
