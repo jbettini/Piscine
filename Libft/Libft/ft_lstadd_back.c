@@ -10,7 +10,7 @@ void ft_lstadd_back(t_list **alst, t_list *new)
 		{
 			while(li->next)
 				li = li->next;
-			li->next = new;
+		li->next = new;
 		}
 		else
 			*alst = new;

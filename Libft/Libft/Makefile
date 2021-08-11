@@ -1,5 +1,7 @@
 NAME = libft.a
 
+BONUS = libft_bonus.a
+
 SRCS	=	ft_memset.c\
 		ft_bzero.c\
 		ft_memcpy.c\
@@ -50,7 +52,8 @@ SRCS	=	ft_memset.c\
 		ft_calloc.c\
 		ft_strncmp.c\
 		ft_strlcpy.c\
-		ft_lstnew.c\
+		
+SRCSB	=	ft_lstnew.c\
 		ft_lstsize.c\
 		ft_lstadd_front.c\
 		ft_lstadd_back.c\
@@ -67,23 +70,31 @@ AR = ar rcs
 
 OBJS = ${SRCS:.c=.o}
 
-CFLAGS = -Wall -Wextra -Werror
+OBJSB = ${SRCSB:.c=.o}
 
-${NAME}:	${OBJS}
-			${AR} ${NAME} ${OBJS}
+CFLAGS = -Wall -Wextra -Werror
 
 %.o: %.c
 		${CC} -o $@ -c $? ${CFALGS}
 
-all:	${NAME}
+${NAME}:	${OBJS}	
+			${AR} ${NAME} ${OBJS}
+
+${BONUS}:	${OBJS} ${OBJSB}
+			${AR} ${BONUS} ${OBJS} ${OBJSB}
+
+all:	${NAME} 
+
+bonus:	${BONUS} 
 
 clean:
-	${RM} ${OBJS}
+	${RM} ${OBJS} ${OBJSB}
 
 fclean:	clean
-		${RM} ${NAME}	
+		${RM} ${NAME} ${BONUS}
 
 re:	fclean all
+
 
 .PHONY: all clean fclean re
 	
